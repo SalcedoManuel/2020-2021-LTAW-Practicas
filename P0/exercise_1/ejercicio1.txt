@@ -1,0 +1,44 @@
+a) Explica para qué sirve la primera línea del documento y por qué es necesaria
+    La primera línea sirve para definir el lenguaje del fichero y así poder ejecutar el fichero correctamente.
+b) Si se omitiese esta línea, ¿Qué piensas que ocurriría?
+    Al ejecutarse el programa no sabría que lenguaje es.
+c) Sin conocer el contenido del fichero urjc_ml.dtd, ¿el documento es sintácticamente correcto?
+    Sí, puesto que todas las cabeceras iniciadas se cierran posteriormente.
+d) ¿Qué hace la tercera línea?
+    Es un comentario.
+e) ¿Cuantas etiquetas de apertura hay? ¿Cuantas de cierre?
+    Hay 9 de apertura y por ende 9 de cierre.
+f) Dibuja el diagrama de contenedores de este documento
+            documento
+                |
+                V
+              urjc_ml
+                |
+                V
+              campus
+            /       \
+          nombre    escuela
+                   /       \
+                nombre     grado
+                        /    |        \
+                  nombre  asignatura   asignatura
+g) Dibuja la estructura en árbol que define este documento
+                        urjc_ml
+                          |
+                          V
+                        campus
+             |                              |
+             V                              V
+           nombre                         escuela
+    "Campus de Fuenlabrada            |             |      
+                                      V             V
+                                    nombre        grado
+                                              |         |          |
+                                              V         V          V
+                                             nombre  asignatura   asignatura
+                                               |        |                 |
+                                               V        V                 V
+                                         "Ingeniería   "Laboratorio     "Construcción de
+                                          en sistemas   de Tecnologías   Servicios y Aplicaciones
+                                         audiovisuales  Audiovisuales    Audiovisuales en Internet"
+                                         y Multimedia"  en la Web"
