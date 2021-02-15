@@ -1,0 +1,14 @@
+<!DOCTYPE generic SYSTEM "generic.dtd">
+
+<contenedor>
+    <texto>Texto5</texto>
+    <contenedor>
+        <contenedor>
+            <texto>Texto3</texto>
+            <contenedor>
+                <texto>Texto2</texto>
+                <contenedor>
+                    <texto>Texto1</texto>
+            <contenedor>
+                 <texto>Texto4</texto>
+
