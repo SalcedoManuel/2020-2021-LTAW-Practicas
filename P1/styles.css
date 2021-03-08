@@ -1,0 +1,34 @@
+body{
+    background-color: blueviolet;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .Direccion{
+    text-align: left;
+    font-style: italic;
+    font-size: 15px;
+  }
+  #LadoIzquierdo{
+    margin-top: 10px;
+    padding-bottom: 700px;
+  }
+  #Logos{
+    height: 10px;
+    }
+  #ForAca{
+    text-align: left;
+    font-style:oblique;
+  }
+  h1{
+    text-align: center;
+    margin: 10px;
+    font-size: 250%;
+  }
+  h2{
+    text-align: center;
+  }
+  p{
+    color: white;
+  }
+  
