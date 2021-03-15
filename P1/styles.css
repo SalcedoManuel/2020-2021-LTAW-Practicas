@@ -1,5 +1,5 @@
 body{
-    background-color: blueviolet;
+    background-color: rgb(255, 255, 255);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -9,17 +9,99 @@ body{
     font-style: italic;
     font-size: 15px;
   }
-  #LadoIzquierdo{
+
+  #LadoIzquierdo , #LadoDerecho{
     margin-top: 10px;
     padding-bottom: 700px;
+    padding: 20px;
   }
+  #ParteCentral{
+    text-align: center;
+    background-color: lightblue;
+    
+  }
+
   #Logos{
-    height: 10px;
+    height: 200px;
+    padding-left: 20%;
+    padding-right: 20%;
+    text-align: center;
+
     }
+  .Botones{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .Page{
+    margin-left: 16.8%;
+    background-color: lightblue;
+    width:1260px;
+  }
+
+  .button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color:rgb(0, 41, 75);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 250px;
+    transition: all 0.5s;
+  }
+    
+  .button span {
+    cursor: progress;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    }
+    
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    }
+    
+  .button:hover span {
+    padding-right: 25px;
+    }
+    
+  .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+
+  .Cabecera{
+    text-align: right;
+    background-color: rgb(0, 41, 75);
+    color: cornsilk;
+    font-family:cursive;
+    padding-top: 2px;
+    padding-right: 20px;
+    padding-bottom: 2px;
+  }
+
+  #b1{
+    color: white;
+    font-family:cursive;
+  }
+  #b2{
+    color: white;
+    text-align: center;
+    font-family: cursive;
+    font-size: 10px;
+  }
+
   #ForAca{
     text-align: left;
     font-style:oblique;
   }
+
   h1{
     text-align: center;
     margin: 10px;
@@ -29,6 +111,6 @@ body{
     text-align: center;
   }
   p{
-    color: white;
+    color: black;
   }
   
