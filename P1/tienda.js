@@ -1,7 +1,7 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
-const PUERTO = 8080
+const PUERTO = 9000
 
 
 http.createServer((req, res) => {
@@ -20,7 +20,7 @@ http.createServer((req, res) => {
 
     //-- Pagina principal
     case "/":
-      filename = "pagina.html";
+      filename = "index.html";
       break;
     //-- Pagina de acceso
     default:
