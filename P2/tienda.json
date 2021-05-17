@@ -41,7 +41,7 @@
     },
     {
         "lista_pedidos":{
-            "pedido0": {
+            "pedido1": {
                 "nombre_usuario": "root",
                 "direccion_destino": "calle",
                 "numero_tarjeta": "123456789"
