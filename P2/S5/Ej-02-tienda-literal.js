@@ -13,7 +13,10 @@ const tienda_json = `[
 // Para obtener una variable a partir de un texto en JSON utilizamos el método.
 // JSON.parse(cadena)
 //-- Crear la estructura tienda a partir de la cadena en json
+//-- Convierte a JSON una lista de caracteres.
 const tienda = JSON.parse(tienda_json);
+
+//-- Después de obtener la lista en JSON. 
 
 //-- Mostrar informacion sobre la tienda
 console.log("Productos en la tienda: " + tienda.length);

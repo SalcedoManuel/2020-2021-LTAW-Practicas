@@ -4,7 +4,7 @@ const fs = require('fs');
 //-- Npmbre del fichero JSON a leer
 const FICHERO_JSON = "Ej-03-tienda-json-fich.json"
 
-//-- NOmbre del fichero JSON de salida
+//-- Nombre del fichero JSON de salida
 const FICHERO_JSON_OUT = "Ej-04-tienda-modificacion.json"
 
 //-- Leer el fichero JSON
@@ -14,7 +14,13 @@ const  tienda_json = fs.readFileSync(FICHERO_JSON);
 const tienda = JSON.parse(tienda_json);
 
 //-- Modificar el nombre del producto 2
-tienda[1]["nombre"] = "IceBeraker"
+tienda[1]["nombre"] = "IceBreaker"
+
+//-- Añadir el nombre de un nuevo producto
+tienda[2] = {
+  nombre: "Icestick",
+  stock: 10
+}
 
 //-- Mostrar informacion sobre la tienda
 console.log("Productos en la tienda: " + tienda.length);
