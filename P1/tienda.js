@@ -31,6 +31,9 @@ http.createServer((req, res) => {
     switch (extension) {
       case "js":
         mime = "application/js"
+      case "json":
+        mime = "application/json";
+        break;
       case "jpg":
         mime = "image/jpg";
         break;
@@ -45,9 +48,6 @@ http.createServer((req, res) => {
         break;
       case "css":
         mime = "text/css";
-        break;
-      case "json":
-        mime = "application/json";
         break;
       case "svg":
         mime = "image/svg+xml";
