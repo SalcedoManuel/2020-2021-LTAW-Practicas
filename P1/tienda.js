@@ -1,7 +1,7 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
-const PUERTO = 9000
+const PUERTO = 9000;
 
 
 http.createServer((req, res) => {
