@@ -1,0 +1,29 @@
+[
+    {
+        "lista_usuarios":{
+            "user": "root",
+            "name": "root",
+            "email": "root@root.com"
+        }
+    },
+    {
+        "lista_productos":{
+            "nombre_producto": "cubo3x3",
+            "descripcion": "cubo de 3x3 piezas.",
+            "precio": "15",
+            "stock": "10"
+        }
+    },
+    {
+        "lista_pedidos":{
+            "nombre_usuario": "root",
+            "direccion_destino": "calle",
+            "numero_tarjeta": "123456789",
+            "lista_productos_comprados":{
+                "cubo3x3": "1",
+                "cubo4x4": "1",
+                "cuboespecial": "1"
+            }
+        }
+    }
+]
