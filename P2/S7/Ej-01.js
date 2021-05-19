@@ -22,11 +22,13 @@ const server = http.createServer((req, res) => {
   
     if (myURL.pathname == '/productos') {
         content_type = "application/json";
-        content = PRODUCTOS_JSON;
+        content = PRODUCTOS_JSON; //-- Contenido del JSON
     }
   
     //-- Generar respuesta
+    //-- Crear cabecera
     res.setHeader('Content-Type', content_type);
+    //-- Escribir el contenido.
     res.write(content);
     res.end()
   
