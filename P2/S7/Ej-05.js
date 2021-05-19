@@ -40,18 +40,20 @@ const server = http.createServer((req, res) => {
             console.log("Peticion de Productos!")
             content_type = "application/json";
 
-            //-- Leer los parámetros
+            //-- Leer los parámetros del Display
             let param1 = myURL.searchParams.get('param1');
-
+            //-- Convertimos el parametro a mayúsculas.
             param1 = param1.toUpperCase();
 
             console.log("  Param: " +  param1);
 
             let result = [];
-
+            
+            //-- Va recorriendo el bucle producto por prodcuto mientras busca si
+            //-- alguno empieza como param1, en ese caso, se muestra gracias a result.
             for (let prod of productos) {
 
-                //-- Pasar a mayúsculas
+                //-- Pasar a mayúsculas el parametro que toca.
                 prodU = prod.toUpperCase();
 
                 //-- Si el producto comienza por lo indicado en el parametro
