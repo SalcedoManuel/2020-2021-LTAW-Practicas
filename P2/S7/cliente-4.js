@@ -23,7 +23,7 @@ caja.oninput = () => {
             if (m.status==200) {
 
                 //-- La respuesta es un objeto JSON
-                let productos = JSON.parse(m.responseText);
+                let productos = JSON.parse(m.responseText)
 
                 console.log(productos);
 
