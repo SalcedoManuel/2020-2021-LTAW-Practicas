@@ -51,7 +51,7 @@ caja.oninput = () => {
         }
     }
 
-    console.log(caja.value.length);
+    console.log(caja.value.length)
 
     //-- La peticion se realia solo si hay al menos 1 carácter
     if (caja.value.length >= 1) {
