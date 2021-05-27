@@ -3,7 +3,20 @@ const url = require('url');
 const fs = require('fs');
 const PUERTO = 9000;
 
+//-- Npmbre del fichero JSON a leer
+const FICHERO_JSON = "tienda.json"
 
+//-- Leer el fichero JSON
+const  tienda_json = fs.readFileSync(FICHERO_JSON);
+
+//-- Crear la estructura tienda a partir del contenido del fichero
+const store = JSON.parse(tienda_json);
+
+const tienda = store[0]["products"];
+
+let myJSON = JSON.stringify(tienda);
+
+products = tienda[0]["products"];
 http.createServer((req, res) => {
   console.log("----------> Peticion recibida")
   let q = url.parse(req.url, true);
@@ -22,6 +35,11 @@ http.createServer((req, res) => {
     case "/":
       filename = "index.html";
       break;
+    case "/productos":
+       filename = "tienda.json";
+       recurso = "tienda";
+       tipo = "json"
+       break 
     //-- Pagina de acceso
     default:
     filename = q.pathname.substr(1);
@@ -62,10 +80,15 @@ http.createServer((req, res) => {
         res.writeHead(404, {'Content-Type': 'na'});
         return res.end("404 Not Found");
       }
-
-    res.writeHead(200, {'Content-Type': mime});
-    res.write(data);
-    res.end();
+      if (filename = "tienda.json"){
+        res.writeHead(200, {'Content-Type': 'json'});
+        res.write(myJSON);
+        res.end();
+      }else{
+        res.writeHead(200, {'Content-Type': mime});
+        res.write(data);
+        res.end();
+      }
   });
 }).listen(PUERTO);
 
