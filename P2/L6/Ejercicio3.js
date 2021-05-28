@@ -42,6 +42,16 @@ const server = http.createServer((req, res) => {
   let content_type = "text/html";
   let content = FORMULARIO;
 
+  //-- Función para crear un pedido.
+  function Crear_Pedido(username,direction,card_number) {
+    pedido = new Object();
+    pedido.username = username;
+    pedido.direction = direction;
+    pedido.card_number = card_number;
+    pedido.products = {};
+    return pedido;
+}
+
 
   if (myURL.pathname == '/procesar') {
 
@@ -71,18 +81,12 @@ const server = http.createServer((req, res) => {
     content_type = "text/html";
 
     //-- Buscamos en la lista del JSON y añadimos el pedido.
-    number_pedidos = tienda[2]["pedidos"].length;
+    number_orders = tienda[2]["pedidos"].length;
     username = user_name;
-    if (number_pedidos == 1) {
-        tienda[2]["pedidos"][number_pedidos-1]["username"] = username;
-        tienda[2]["pedidos"][number_pedidos-1]["card number"] = card_number;
-        tienda[2]["pedidos"][number_pedidos-1]["direction"] = direction;
-        tienda[2]["pedidos"].push({"username":"","direction":"","card number": 0,"list products":{}});
-    }else{
-        tienda[2]["pedidos"][number_pedidos][number_pedidos + 1]["username"] = username;
-        tienda[2]["pedidos"][number_pedidos][number_pedidos + 1]["card number"] = card_number;
-        tienda[2]["pedidos"][number_pedidos][number_pedidos + 1]["direction"] = direction;
-    }
+    //-- Crear el formato del pedido.
+    tienda[2]["pedidos"][number_orders] = Crear_Pedido(username,direction,card_number);
+
+    
     //-- Convertir la variable a cadena JSON
     let myJSON = JSON.stringify(tienda);
     //-- Guardarla en el fichero destino
