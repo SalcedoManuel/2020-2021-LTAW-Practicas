@@ -45,12 +45,15 @@ const server = http.createServer((req, res) => {
   if (myURL.pathname == '/procesar') {
       content_type = "text/html";
         //-- error sirve para saber si el usuario está o no en la lista.
-        let error = true;
-      tienda.forEach((element, index) => {
-          if (element["username"] == username){
+        let user_error = true;
+      console.log("En el fichero JSON es: " + tienda[1]["users"][1]["username"]);
+      console.log("En el JS es: " + username);
+
+      tienda[1]["users"].forEach((element, index) => {
+          if (tienda[1]["users"][index]["username"] == username){
              //-- Reemplazar las palabras claves por su valores
              //-- en la plantilla HTML
-             content = RESPUESTA.replace("NOMBRE", username);
+             content = RESPUESTA.replace("USERNAME", username);
              content = content.replace("PASSWORD", password);
              //-- Si el usurio es root se modifica el HTML extra
              let html_extra = "";
@@ -59,10 +62,10 @@ const server = http.createServer((req, res) => {
              }
              content = content.replace("HTML_EXTRA", html_extra);
              //-- El usuario está en la lista.
-             error = false;
+             user_error = false;
             }
       });
-      if (error) {
+      if (user_error) {
         content = ERROR_PAGE;
         console.log("Error en el inicio de sesión");
         html_extra = "<h2>Gracias por estar en nuestra tienda</h2>";
