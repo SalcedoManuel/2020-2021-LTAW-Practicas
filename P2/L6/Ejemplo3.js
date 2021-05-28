@@ -5,11 +5,12 @@ const fs = require('fs');
 const PUERTO = 9000;
 
 //-- Cargar pagina web del formulario
-const FORMULARIO = fs.readFileSync('Ejemplo3.html','utf-8');
+const FORMULARIO = fs.readFileSync('Ejemplo1-form.html','utf-8');
 
 //-- HTML de la página de respuesta
-const RESPUESTA = fs.readFileSync('Ejemplo1.html', 'utf-8');
+const RESPUESTA = fs.readFileSync('Ejemplo3.html', 'utf-8');
 
+//-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
 
   //-- Construir el objeto url con la url de la solicitud

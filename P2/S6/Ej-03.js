@@ -14,7 +14,8 @@ const RESPUESTA = fs.readFileSync('form1-resp.html', 'utf-8');
 const server = http.createServer((req, res) => {
 
   //-- Construir el objeto url con la url de la solicitud
-  const myURL = new URL(req.url, 'http://' + req.headers['host']);  
+  const myURL = new URL(req.url, 'http://' + req.headers['host']);
+    
   //-- Leer los parámetros
   let nombre = myURL.searchParams.get('nombre');
   let apellidos = myURL.searchParams.get('apellidos');
