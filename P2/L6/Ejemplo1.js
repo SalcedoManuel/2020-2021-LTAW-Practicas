@@ -2,13 +2,13 @@
 
 const http = require('http');
 const fs = require('fs');
-const PUERTO = 8080;
+const PUERTO = 9000;
 
 //-- Cargar pagina web del formulario
-const FORMULARIO = fs.readFileSync('Ejemplo1.html','utf-8');
+const FORMULARIO = fs.readFileSync('Ejemplo1-form.html','utf-8');
 
 //-- HTML de la página de respuesta
-const RESPUESTA = fs.readFileSync('form1-resp.html', 'utf-8');
+const RESPUESTA = fs.readFileSync('Ejemplo1.html', 'utf-8');
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
