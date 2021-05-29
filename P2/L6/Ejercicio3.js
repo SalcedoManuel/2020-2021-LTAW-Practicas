@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
     pedido.username = username;
     pedido.direction = direction;
     pedido.card_number = card_number;
-    pedido.products = {};
+    pedido.products = [];
     return pedido;
 }
 
