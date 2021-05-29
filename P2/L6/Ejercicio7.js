@@ -20,7 +20,7 @@ const ERROR_PAGE = fs.readFileSync('Error-Ejercicio2.html', 'utf-8');
 const PRODUCTO1 = fs.readFileSync('Producto1-Ejercicio7.html','utf-8');
 
 //-- HTML del primer producto
-const PRODUCTO2 = fs.readFileSync('Producto3-Ejercicio7.html','utf-8');
+const PRODUCTO2 = fs.readFileSync('Producto2-Ejercicio7.html','utf-8');
 
 //-- HTML del primer producto
 const PRODUCTO3 = fs.readFileSync('Producto3-Ejercicio7.html','utf-8');
@@ -43,7 +43,7 @@ function get_user(req) {
   
     //-- Hay cookie
     if (cookie) {
-      
+      console.log(cookie);
       //-- Obtener un array con todos los pares nombre-valor
       let pares = cookie.split(";");
       
@@ -69,6 +69,39 @@ function get_user(req) {
     }
   }
 
+  function get_products(req) {
+
+    //-- Leer la Cookie recibida
+    const cookie = req.headers.cookie;
+  
+    //-- Hay cookie
+    if (cookie) {
+      
+      //-- Obtener un array con todos los pares nombre-valor
+      let pares = cookie.split(";");
+      
+      //-- Variable para guardar el usuario
+      let product;
+  
+      //-- Recorrer todos los pares nombre-valor
+      pares.forEach((element, index) => {
+  
+        //-- Obtener los nombres y valores por separado
+        let [nombre, valor] = element.split('=');
+  
+        //-- Leer el usuario
+        //-- Solo si el nombre es 'product'
+        if (nombre.trim() === 'product') {
+          product = valor;
+        }
+      });
+  
+      //-- Si la variable user no está asignada
+      //-- se devuelve null
+      return product || null;
+    }
+  }
+
 var list_productos = [];
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
@@ -86,14 +119,12 @@ const server = http.createServer((req, res) => {
   let content = INICIO;
 
   let user_cookie = get_user(req);
-  console.log("Averiguar la cookie: " + user_cookie);
+  let list_products = get_products(req);
+  console.log("Averiguar la cookie del usuario: " + user_cookie);
+  console.log("Averiguar la cookie de la lista de productos: " + list_products);
   //--
   if (myURL.pathname == '/' && user_cookie != null) {
-    content = RESPUESTA;
-    content = content.replace("USERNAME",user_cookie);
-    content = content.replace("PASSWORD","oculta por seguridad");
-    let html_extra = "";
-    content = content.replace("HTML_EXTRA", html_extra);
+    content = INICIO;
   }
   if (myURL.pathname == '/procesar' && user_cookie == null) {
       content_type = "text/html";
@@ -106,7 +137,7 @@ const server = http.createServer((req, res) => {
                 user_error = false;
                 //-- Asignar la cookie de usuario.
                 console.log("Añadir la cabecera")
-                let cabecera = "user=" + username;
+                cabecera = "user=" + username;
                 res.setHeader('Set-Cookie', cabecera);
                 //-- Reemplazar las palabras claves por su valores
                 //-- en la plantilla HTML
@@ -139,37 +170,77 @@ const server = http.createServer((req, res) => {
     content = PRODUCTO2;
     let new_message = "carro: " + list_productos.length;
     console.log(list_productos)
-    content = PRODUCTO1.replace("carro: 0",new_message)
+    content = PRODUCTO2.replace("carro: 0",new_message)
     content_type = "text/html";
   }
   if (myURL.pathname == '/producto3') {
     content = PRODUCTO3;
     let new_message = "carro: " + list_productos.length;
     console.log(list_productos)
-    content = PRODUCTO1.replace("carro: 0",new_message)
+    content = PRODUCTO3.replace("carro: 0",new_message)
     content_type = "text/html";
   }
 
   if (myURL.pathname == '/carrito-producto1') {
-      list_productos.push("cubo 2x2");
-      let cabecera = "&Carrito";
-      res.setHeader('Set-Cookie', cabecera);
-      console.log(list_productos);
-      content = INICIO;
+    list_productos.push("cubo 2x2");
+    if (list_products != null) {
+      cabecera = "product="+ list_products + "cubo2x2&";
+    }else{
+      cabecera = "product="+ "cubo2x2&";
+    }
+    res.setHeader('Set-Cookie', cabecera);
+    content = INICIO;
+    if (user_cookie) {
+        //-- Reemplazar las palabras claves por su valores
+        //-- en la plantilla HTML
+        let enlace = "<a href='/formulario'>Login</a>";
+        let usuario = "Bienvenido " + user_cookie;
+        content = INICIO.replace(enlace,usuario);
+    }
+
   }
+
   if (myURL.pathname == '/carrito-producto2') {
     list_productos.push("cubo 3x3");
-    console.log(list_productos);
+    if (list_products != null) {
+      cabecera = "product="+ list_products + "cubo3x3&";
+    }else{
+      cabecera = "product="+ "cubo3x3&";
+    }
+    res.setHeader('Set-Cookie', cabecera);
     content = INICIO;
+    if (user_cookie) {
+        //-- Reemplazar las palabras claves por su valores
+        //-- en la plantilla HTML
+        let enlace = "<a href='/formulario'>Login</a>";
+        let usuario = "Bienvenido " + user_cookie;
+        content = INICIO.replace(enlace,usuario);
+    }
   }
+
   if (myURL.pathname == '/carrito-producto3') {
     list_productos.push("cubo 4x4");
-    console.log(list_productos);
+    if (list_products != null) {
+      cabecera = "product="+ list_products + "cubo4x4&";
+    }else{
+      cabecera = "product="+ "cubo4x4&";
+    }
+    res.setHeader('Set-Cookie', cabecera);
     content = INICIO;
+    if (user_cookie) {
+        //-- Reemplazar las palabras claves por su valores
+        //-- en la plantilla HTML
+        let enlace = "<a href='/formulario'>Login</a>";
+        let usuario = "Bienvenido " + user_cookie;
+        content = INICIO.replace(enlace,usuario);
+    }
   }
   if (myURL.pathname == '/finalizar_compra') {
       if (user_cookie != null) {
           content = FINISH_SHOPPING;
+          content = content.replace("USUARIO",user_cookie);
+          let cabecera = "product=";
+          res.setHeader('Set-Cookie', cabecera);
           list_productos = [];
       }else{
           content = content.replace("<p></p>","Para hacer la compra hay que registrarse")
