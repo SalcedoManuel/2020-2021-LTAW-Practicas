@@ -4,6 +4,9 @@ const http = require('http');
 const fs = require('fs');
 const PUERTO = 9000;
 
+//-- Cargar la página de inicio.
+const INICIO = fs.readFileSync('Index-Ejercicio6.html', 'utf-8');
+
 //-- Cargar pagina web del formulario
 const FORMULARIO = fs.readFileSync('Formulario-Ejercicio2.html','utf-8');
 
@@ -67,19 +70,20 @@ const server = http.createServer((req, res) => {
   let password = myURL.searchParams.get('password');
   
 
-  //-- Por defecto entregar formulario
+  //-- Por defecto entregar la página de inicio.
   let content_type = "text/html";
-  let content = FORMULARIO;
+  let content = INICIO;
 
   let user_cookie = get_user(req);
-  console.log("Averiguar la cookie: " + user_cookie)
+  console.log("Averiguar la cookie: " + user_cookie);
+  //--
   if (myURL.pathname == '/' && user_cookie != null) {
     content = RESPUESTA;
     content = content.replace("USERNAME",user_cookie);
     content = content.replace("PASSWORD","oculta por seguridad");
     let html_extra = "";
     content = content.replace("HTML_EXTRA", html_extra);
-}
+  }
   if (myURL.pathname == '/procesar' && user_cookie == null) {
       content_type = "text/html";
         //-- error sirve para saber si el usuario está o no en la lista.
@@ -108,6 +112,11 @@ const server = http.createServer((req, res) => {
         content = ERROR_PAGE.replace("HTML_EXTRA", html_extra);
       }
   }
+  if (myURL.pathname == '/formulario') {
+    let content_type = "text/html";  
+    content = FORMULARIO;
+  }
+
 
     //-- Enviar la respuesta
     res.setHeader('Content-Type', content_type);
