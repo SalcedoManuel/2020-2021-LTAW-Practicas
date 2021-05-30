@@ -102,6 +102,16 @@ function get_user(req) {
     }
   }
 
+    //-- Función para crear un pedido.
+    function Crear_Pedido(username,direction,card_number,products) {
+        pedido = new Object();
+        pedido.username = username;
+        pedido.direction = direction;
+        pedido.card_number = card_number;
+        pedido.products = products;
+        return pedido;
+    }
+
 var list_productos = [];
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
@@ -239,6 +249,22 @@ const server = http.createServer((req, res) => {
       if (user_cookie != null) {
           content = FINISH_SHOPPING;
           content = content.replace("USUARIO",user_cookie);
+          //-- Vamos a extraer los productos de la cookie.
+          let pedidos = list_products.split("&");
+          //-- Guardamos la información en el apartado pedidos.
+          number_orders = tienda[2]["pedidos"].length;
+          tienda[2]["pedidos"][number_orders] = Crear_Pedido(user_cookie,"","",pedidos)
+          pedidos.forEach((element, index) => {
+            if (tienda[0]["products"][0]["name"] == pedidos.index){
+                tienda[0]["products"][0][stock] -= 1;
+            }
+            if (tienda[0]["products"][1]["name"] == pedidos.index) {
+                tienda[0]["products"][0][stock] -= 1;
+            }
+            if (tienda[0]["products"][2]["name"] == pedidos.index) {
+                tienda[0]["products"][0][stock] -= 1;
+            }
+        });
           let cabecera = "product=";
           res.setHeader('Set-Cookie', cabecera);
           list_productos = [];
