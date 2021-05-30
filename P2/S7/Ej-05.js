@@ -14,7 +14,21 @@ const MAIN = fs.readFileSync('Ej-05.html','utf-8');
 const PRODUCTOS_JSON = fs.readFileSync('Ej-01.json');
 
 //-- Obtener el array de productos
-let productos = JSON.parse(PRODUCTOS_JSON);
+//let productos = JSON.parse(PRODUCTOS_JSON);
+//-- Creamos el array con que tendrá solo los productos
+let productos = [];
+//-- Leer fichero JSON con los productos JSON
+const CUBOS_JSON = fs.readFileSync('tienda.json');
+//-- Obtener el array de los productos
+let cubos = JSON.parse(CUBOS_JSON);
+cubos = cubos[0]["products"];
+//-- Recorrer el array de productos
+cubos.forEach((element, index)=>{
+    let cubo = cubos[index]["name"];
+    productos.push(cubo);
+  });
+
+  let result = [];
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
@@ -43,11 +57,12 @@ const server = http.createServer((req, res) => {
             //-- Leer los parámetros
             let param1 = myURL.searchParams.get('param1');
 
+            //-- Pasamos
             param1 = param1.toUpperCase();
 
             console.log("  Param: " +  param1);
 
-            let result = [];
+            result = [];
 
             for (let prod of productos) {
 
@@ -61,7 +76,8 @@ const server = http.createServer((req, res) => {
                 }
                 
             }
-            console.log(result);
+
+            console.log("Lista: " + result);
             content = JSON.stringify(result);
             break;
 
@@ -82,6 +98,13 @@ const server = http.createServer((req, res) => {
             return;
             break;
 
+        case 'busqueda':
+            //-- Nos quedamos con el primer valor que aparece en la búsqueda
+            if (result.length != 0){
+                console.log("Enviar a la página de " + result[0]);
+                content = MAIN;
+            }
+            break
             //-- Si no es ninguna de las anteriores devolver mensaje de error
         default:
             res.setHeader('Content-Type','text/html');
