@@ -138,8 +138,8 @@ const server = http.createServer((req, res) => {
   }
   if (myURL.pathname == '/procesar' && user_cookie == null) {
       content_type = "text/html";
-        //-- error sirve para saber si el usuario está o no en la lista.
-        let user_error = true;
+      //-- error sirve para saber si el usuario está o no en la lista.
+      let user_error = true;
 
       tienda[1]["users"].forEach((element, index) => {
           if (tienda[1]["users"][index]["username"] == username){
