@@ -1,28 +1,5 @@
 //-- Cargar el módulo de electron
 const electron = require('electron');
-//-- Cargar el módulo de socket
-const socket  =requiere('socket.io');
-//-- Cargar el módulo http
-const http = requiere('http');
-//-- Cargar el módulo express
-const express = requiere('express');
-//-- Cargar módulo de colores
-const colors = require('colors');
-
-//-- Valor del puerto del chat
-const PUERTO = 9000;
-
-//-- Número de concexiones recibidas.
-var number_connections = 0;
-
-//-- Crear una nueva aplicación web
-const app = express();
-
-//-- Crear un servidor, asosiaco a la App de express
-const server = http.Server(app);
-
-//-- Crear el servidor de websockets, asociado al servidor http
-const io = socket(server);
 
 console.log("Arrancando electron...");
 
@@ -50,7 +27,7 @@ electron.app.on('ready', () => {
   //-- En la parte superior se nos ha creado el menu
   //-- por defecto
   //-- Si lo queremos quitar, hay que añadir esta línea
-  win.setMenuBarVisibility(false)
+  //win.setMenuBarVisibility(false)
 
   //-- Cargar contenido web en la ventana
   //-- La ventana es en realidad.... ¡un navegador!
