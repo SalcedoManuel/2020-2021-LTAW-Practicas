@@ -12,6 +12,18 @@ const colors = require('colors');
 //-- Valor del puerto del chat
 const PUERTO = 9000;
 
+//-- Número de concexiones recibidas.
+var number_connections = 0;
+
+//-- Crear una nueva aplicación web
+const app = express();
+
+//-- Crear un servidor, asosiaco a la App de express
+const server = http.Server(app);
+
+//-- Crear el servidor de websockets, asociado al servidor http
+const io = socket(server);
+
 console.log("Arrancando electron...");
 
 //-- Variable para acceder a la ventana principal
