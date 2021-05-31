@@ -5,6 +5,7 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const fs = require('fs');
 const ip = require('ip'); 
 
 //-- Número de conexiones recibidas.
@@ -67,6 +68,7 @@ io.on('connect', (socket) => {
     }else{
         //-- Reenviarlo a todos los clientes conectados
         io.send(msg);
+        win.webContents.send('print-msg', msg)
     }
   });
 
