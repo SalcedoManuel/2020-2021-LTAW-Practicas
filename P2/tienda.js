@@ -10,6 +10,9 @@ const INICIO = fs.readFileSync('tienda_interfaz/index.html', 'utf-8');
 //-- Cargar pagina web del formulario
 const FORMULARIO = fs.readFileSync('tienda_interfaz/formulario.html','utf-8');
 
+//-- Carga página web del formulario de dirección y la tarjeta de crédito.
+const FORMULARIO_EXTRA = fs.readFileSync('tienda_interfaz/formulario-extra.html','utf-8');
+
 //-- HTML de la página de respuesta
 const RESPUESTA = fs.readFileSync('tienda_interfaz/respuesta.html', 'utf-8');
 
@@ -102,15 +105,15 @@ function get_user(req) {
     }
   }
 
-    //-- Función para crear un pedido.
-    function Crear_Pedido(username,direction,card_number,products) {
-        pedido = new Object();
-        pedido.username = username;
-        pedido.direction = direction;
-        pedido.card_number = card_number;
-        pedido.products = products;
-        return pedido;
-    }
+  //-- Función para crear un pedido.
+  function Crear_Pedido(username,direction,card_number,products) {
+      pedido = new Object();
+      pedido.username = username;
+      pedido.direction = direction;
+      pedido.card_number = card_number;
+      pedido.products = products;
+      return pedido;
+  }
 
 var list_productos = [];
 //-- SERVIDOR: Bucle principal de atención a clientes
@@ -122,6 +125,8 @@ const server = http.createServer((req, res) => {
   //-- Leer los parámetros
   let username = myURL.searchParams.get('username');
   let password = myURL.searchParams.get('password');
+  let direction = myURL.searchParams.get('direction');
+  let credit_card = myURL.searchParams.get('credit_card');
   
 
   //-- Por defecto entregar la página de inicio.
@@ -192,11 +197,11 @@ const server = http.createServer((req, res) => {
   }
 
   if (myURL.pathname == '/carrito-producto1') {
-    list_productos.push("cubo 2x2");
+    list_productos.push("Cubo 2x2");
     if (list_products != null) {
-      cabecera = "product="+ list_products + "cubo2x2&";
+      cabecera = "product="+ list_products + "Cubo 2x2&";
     }else{
-      cabecera = "product="+ "cubo2x2&";
+      cabecera = "product="+ "Cubo 2x2&";
     }
     res.setHeader('Set-Cookie', cabecera);
     content = INICIO;
@@ -211,11 +216,11 @@ const server = http.createServer((req, res) => {
   }
 
   if (myURL.pathname == '/carrito-producto2') {
-    list_productos.push("cubo 3x3");
+    list_productos.push("Cubo 3x3");
     if (list_products != null) {
-      cabecera = "product="+ list_products + "cubo3x3&";
+      cabecera = "product="+ list_products + "Cubo 3x3&";
     }else{
-      cabecera = "product="+ "cubo3x3&";
+      cabecera = "product="+ "Cubo 3x3&";
     }
     res.setHeader('Set-Cookie', cabecera);
     content = INICIO;
@@ -229,11 +234,11 @@ const server = http.createServer((req, res) => {
   }
 
   if (myURL.pathname == '/carrito-producto3') {
-    list_productos.push("cubo 4x4");
+    list_productos.push("Cubo 4x4");
     if (list_products != null) {
-      cabecera = "product="+ list_products + "cubo4x4&";
+      cabecera = "product="+ list_products + "Cubo 4x4&";
     }else{
-      cabecera = "product="+ "cubo4x4&";
+      cabecera = "product="+ "Cubo 4x4&";
     }
     res.setHeader('Set-Cookie', cabecera);
     content = INICIO;
@@ -246,32 +251,126 @@ const server = http.createServer((req, res) => {
     }
   }
   if (myURL.pathname == '/finalizar_compra') {
-      if (user_cookie != null) {
+      if (user_cookie != null & list_products != null) {
+          //-- Ponemos el HTML de producto comprado.
           content = FINISH_SHOPPING;
+          //-- Poner el nombre de usuario
           content = content.replace("USUARIO",user_cookie);
           //-- Vamos a extraer los productos de la cookie.
           let pedidos = list_products.split("&");
-          //-- Guardamos la información en el apartado pedidos.
+          console.log(pedidos);
+          //-- Averiguamos el número de pedidos realizados.
           number_orders = tienda[2]["pedidos"].length;
-          tienda[2]["pedidos"][number_orders] = Crear_Pedido(user_cookie,"","",pedidos)
+          //-- Creamos el pedido realizado.
+          // tienda[2]["pedidos"][number_orders] = Crear_Pedido(user_cookie,"","",pedidos);
+          //-- Averiguamos si tenemos suficiente stock para realizar el pedido.
+          let pedido_sin_stock = false;
+          let producto_sin_stock = "";
+          //-- Con el fin de asegurar que tenemos el suficiente stock.
+          let tienda_stock = tienda[0]["products"];
           pedidos.forEach((element, index) => {
-            if (tienda[0]["products"][0]["name"] == pedidos.index){
-                tienda[0]["products"][0][stock] -= 1;
+            if (tienda_stock[0]["name"] == pedidos.index){
+              if (tienda_stock[0][stock] != 0) {
+                tienda_stock[0][stock] -= 1;
+              }else{
+                pedido_sin_stock = true;
+                producto_sin_stock += "producto 1 ";
+              }                
             }
-            if (tienda[0]["products"][1]["name"] == pedidos.index) {
-                tienda[0]["products"][0][stock] -= 1;
+            if (tienda_stock[1]["name"] == pedidos.index) {
+              if (tienda_stock[1][stock] != 0) {
+                tienda_stock[1][stock] -= 1;
+              }else{
+                pedido_sin_stock = true;
+                producto_sin_stock += "producto 1 ";
+              } 
             }
-            if (tienda[0]["products"][2]["name"] == pedidos.index) {
-                tienda[0]["products"][0][stock] -= 1;
+            if (tienda_stock[2]["name"] == pedidos.index) {
+              if (tienda_stock[2][stock] != 0) {
+                tienda_stock[2][stock] -= 1;
+              }else{
+                pedido_sin_stock = true;
+                producto_sin_stock += "producto 1 ";
+              } 
             }
-        });
-          let cabecera = "product=";
-          res.setHeader('Set-Cookie', cabecera);
-          list_productos = [];
-      }else{
-          content = content.replace("<p></p>","Para hacer la compra hay que registrarse")
-      }
+
+          });
+          //--Si no hay stock el pedido no se ejecuta la compra.
+          if (pedido_sin_stock) {
+            //-- Reseteamos la variable de la tienda puesto que no se realizará el pedido
+            //-- por falta de stock.
+
+            let frase = "¡No hay suficiente stock!";
+            content = content.replace("¡Datos Recibidos!",frase);
+            frase = "No tenemos suficiente stock de: " + producto_sin_stock + ". Intentelo mas tarde, ";
+            content = content.replace("Gracias por su compra",frase);
+            content = content.replace("Guardamos su pedido.", "Se ha reseteado su lista");
+            console.log("NO TENEMOS STOCK POR AHORA");
+            let cabecera = "product=";
+            res.setHeader('Set-Cookie', cabecera);
+            list_productos = [];
+          }else{
+            //-- Se ejecuta la compra.
+            pedidos.forEach((element, index) => {
+              console.log("-----------------------" + pedidos[index]);
+              if (tienda[0]["products"][0]["name"] == pedidos[index]){
+                console.log("--------------Stock del Producto 1: " + tienda[0]["products"][0]["stock"]);
+                if (tienda[0]["products"][0]["stock"] != 0) {
+                  tienda[0]["products"][0]["stock"] -= 1;
+                }else{
+                  pedido_sin_stock = true;
+                  producto_sin_stock += "producto 1 ";
+                }                
+              }
+              if (tienda[0]["products"][1]["name"] == pedidos[index]) {
+                console.log("--------------Stock del Producto 1: " + tienda[0]["products"][1]["stock"]);
+                if (tienda[0]["products"][1]["stock"] != 0) {
+                  tienda[0]["products"][1]["stock"] -= 1;
+                }else{
+                  pedido_sin_stock = true;
+                  producto_sin_stock += "producto 1 ";
+                } 
+              }
+              if (tienda[0]["products"][2]["name"] == pedidos[index]) {
+                console.log("--------------Stock del Producto 1: " + tienda[0]["products"][2]["stock"]);
+                if (tienda[0]["products"][2]["stock"] != 0) {
+                  tienda[0]["products"][2]["stock"] -= 1;
+                  console.log("--------------Stock del Producto 1: " + tienda[0]["products"][2]["stock"]);
+                }else{
+                  pedido_sin_stock = true;
+                  producto_sin_stock += "producto 1 ";
+                } 
+              }
+            });
+            //-- Convertir la variable a cadena JSON
+            let myJSON = JSON.stringify(tienda);
+            //-- Guardarla en el fichero destino
+            fs.writeFileSync(FICHERO_JSON, myJSON);
+            //-- Se continua el proceso de compra.
+            content = FORMULARIO_EXTRA;
+            content_type = "text/html";
+          }
+    }else{
+       content = content.replace("<p></p>","Para hacer la compra hay que registrarse o tener al menos un producto.")
+    }
   }
+  if (myURL.pathname == '/procesar_compra') {
+    //-- Cogemos la dirección y la tarjeta de crédito.
+    content = RESPUESTA;
+    //-- Averiguamos el número de pedidos realizados.
+    number_orders = tienda[2]["pedidos"].length;
+    //-- Vamos a extraer los productos de la cookie.
+    let pedidos = list_products.split("&");
+    //-- Creamos el pedido
+    tienda[2]["pedidos"][number_orders] = Crear_Pedido(user_cookie,direction,credit_card,pedidos);
+    //-- Borramos la información de la cookie
+    cabecera = "product="+ "";
+    res.setHeader('Set-Cookie', cabecera);
+    //-- Convertir la variable a cadena JSON
+    let myJSON = JSON.stringify(tienda);
+    //-- Guardarla en el fichero destino
+    fs.writeFileSync(FICHERO_JSON, myJSON);
+}
 
     //-- Enviar la respuesta
     res.setHeader('Content-Type', content_type);
