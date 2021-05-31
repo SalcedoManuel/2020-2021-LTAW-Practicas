@@ -11,7 +11,7 @@ const ip = require('ip');
 //-- Número de conexiones recibidas.
 var number_connections = 0;
 
-const PUERTO = 9000;
+const PUERTO = 8080;
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -41,10 +41,12 @@ io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXION **'.yellow);
   number_connections += 1;
+  win.webContents.send('print-users',number_connections); 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXION TERMINADA **'.yellow);
     number_connections -= 1;
+    win.webContents.send('print-users',number_connections); 
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
@@ -59,7 +61,8 @@ io.on('connect', (socket) => {
         socket.send(msg);
     }else if (msg == "/list"){
         msg = "Este el número de usuarios conectados: " + "<b>"+number_connections+ "</b>";
-        socket.send(msg); 
+        socket.send(msg);
+
     }else if (msg == "/hello"){
         msg = "<b> El servidor que os da cobijo os saluda </b>"
     }else if (msg == "/date") {
@@ -116,7 +119,7 @@ electron.app.on('ready', () => {
   win.loadFile("index.html");
   
   //-- Mandar dirección IP
-  let ip_addr = 'http://' + ip.address() + ':' + PUERTO;
+  ip_addr = 'http://' + ip.address() + ':' + PUERTO;
   win.webContents.send('print-ip', ip_addr);
   //-- Esperar a que la página se cargue y se muestre
   //-- y luego enviar el mensaje al proceso de renderizado para que 
