@@ -1,0 +1,15 @@
+.contenedor {
+    width: 250px;
+    height: 200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    overflow: auto;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 4px;
+}
+
+.contenedor hr {
+    background-color: #ff9d00;
+    height: 5px;
+}
