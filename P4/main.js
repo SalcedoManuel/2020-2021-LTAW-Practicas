@@ -1,6 +1,13 @@
 //-- Cargar el módulo de electron
 const electron = require('electron');
 //-- Cargar el módulo de socket
+const socket  =requiere('socket.io');
+//-- Cargar el módulo http
+const http = requiere('http');
+//-- Cargar el módulo express
+const express = requiere('express');
+//-- Cargar módulo de colores
+const colors = require('colors');
 
 console.log("Arrancando electron...");
 
