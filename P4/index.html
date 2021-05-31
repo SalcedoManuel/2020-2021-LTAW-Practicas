@@ -1,39 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilos.css">
+  <title>Chat Super</title>
 
-    <!-- Permitir sólo scripts y ficheros de la máquina local -->
-    <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';" />
+  <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
+  <script src="/socket.io/socket.io.js"></script>
 
-    <!-- Hoja de estilo de la interfaz -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Cargar el proceso asociado a esta página -->
-    <script src="index.js" defer></script>
-
-    <title>Mi APP (version 10)</title>
+  <!-- Cliente que usa los Sockets.io-->
+  <script src="chat.js" defer></script>
 </head>
-<body>
-    <h1>INTERFAZ GRÁFICA</h1>
-    <img src="logo-urjc.png" alt="Logo-URJC" width=150px>
 
+<body style="background-color: aqua;">
+  <h2>Mini Chat</h2>
+  <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
+  <h3>Mensajes recibidos</h3>
+  <div>
     <hr>
-    <h2>Información:</h2>
-    <ul>
-        <li>Arquitectura: <span id="info1" class="blue"></span> </li>
-        <li>Plataforma: <span id="info2" class="blue"></span></li>
-        <li>Diretorio: <span id="info3" class="blue"></span></li>
-    </ul>
+    <p id="display" class="contenedor"></p>
+  </div>
 
-    <hr>
-    <p>Mensajes enviados desde el proceso main:</p>
-    <p>Print:  <span id='print' class="red"></span> </p>
-    <p>   <input type="button" value="Test" id="btn_test"> </p>
-   <p>Display:</p>
-    <p id="display"></p>
 </body>
 </html>
