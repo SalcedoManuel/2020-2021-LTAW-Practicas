@@ -39,11 +39,11 @@ app.use(express.static('public'));
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
   
-  console.log('** NUEVA CONEXIÓN **'.yellow);
+  console.log('** NUEVA CONEXION **'.yellow);
   number_connections += 1;
   //-- Evento de desconexión
   socket.on('disconnect', function(){
-    console.log('** CONEXIÓN TERMINADA **'.yellow);
+    console.log('** CONEXION TERMINADA **'.yellow);
     number_connections -= 1;
   });  
 
