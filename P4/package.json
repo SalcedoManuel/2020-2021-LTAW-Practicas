@@ -1,10 +1,10 @@
 {
-    "name": "mi-electron-app",
+    "name": "practica_4_electron",
     "description": "Estas es mi primera aplicación de escritorio en Electron",
     "version": "0.1.0",
     "main": "main.js",
     "author": {
-        "name": "Obijuan"
+        "name": "Manuel Salcedo Alonso"
     },
     "homepage": "",
     "license": "LGPL",
