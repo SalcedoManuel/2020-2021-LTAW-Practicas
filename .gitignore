@@ -1,3 +1,6 @@
 tmp/
 P4/node_modules
-P4/dist/win-unpacked
+P4/dist
+P4/S10/node_modules
+P4/main/dist
+P4/main/node_modules
