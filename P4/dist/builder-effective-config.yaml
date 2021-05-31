@@ -1,0 +1,9 @@
+directories:
+  output: dist
+  buildResources: build
+appId: mi-electron-app-1-id
+linux:
+  target:
+    - AppImage
+  category: Utility
+electronVersion: 12.0.8
