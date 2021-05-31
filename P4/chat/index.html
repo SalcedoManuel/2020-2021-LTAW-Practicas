@@ -15,7 +15,7 @@
     <!-- Cargar el proceso asociado a esta página -->
     <script src="index.js" defer></script>
 
-    <title>Mi APP (version 10)</title>
+    <title>Mi APP CHAT</title>
 </head>
 <body>
     <h1>INTERFAZ GRÁFICA</h1>
@@ -29,11 +29,24 @@
     </ul>
 
     <hr>
-    <p>Mensajes enviados desde el proceso main:</p>
-    <p>Print:  <span id='print' class="red"></span> </p>
-    <p>   <input type="button" value="Test" id="btn_test"> </p>
-   <p>Display:</p>
-    <p id="display"></p>
-    <p></p>
+    <h1>Home Star Chat (Server)</h1>
+
+    <hr>
+    <div class="left">
+        <p>Versión de Node: <span id="info1" class="blue"></span> </p>
+        <p>Versión de Chrome: <span id="info2" class="blue"></span></p>
+        <p>Versión de Electron: <span id="info3" class="blue"></span></p>
+        <p>Dirección IP: <span id="info4" class="blue"></span></p>
+        <img src="" alt="Código QR" id="qr">
+    </div>
+
+    <div class="right" id="mensaje">
+        <p>Mensajes: <br><br><span id="mensajes" class="blue"></span></p>
+    </div>
+
+    <div class="bottom">
+        <p>Número usuarios conectados: <span id="info_users" class="blue"></span></p>
+        <button id="button_test">Enviar mensaje de prueba</button>
+    </div>
 </body>
 </html>
