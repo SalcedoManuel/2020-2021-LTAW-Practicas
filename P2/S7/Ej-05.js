@@ -11,7 +11,7 @@ const ERROR = fs.readFileSync('error_page.html');
 const MAIN = fs.readFileSync('Ej-05.html','utf-8');
 
 //-- Leer fichero JSON con los productos
-const PRODUCTOS_JSON = fs.readFileSync('Ej-01.json');
+// const PRODUCTOS_JSON = fs.readFileSync('Ej-01.json');
 
 //-- Obtener el array de productos
 //let productos = JSON.parse(PRODUCTOS_JSON);

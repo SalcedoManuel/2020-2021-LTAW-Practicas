@@ -39,6 +39,20 @@ const  tienda_json = fs.readFileSync(FICHERO_JSON);
 //-- Crear la estructura tienda a partir del contenido del fichero
 const tienda = JSON.parse(tienda_json);
 
+//-- Creamos el array que tendrá solamente el array de productos
+const cubos_productos = [];
+
+//-- Obtener el array de los productos
+let cubos = JSON.parse(tienda_json);
+cubos = cubos[0]["products"];
+//-- Recorrer el array de productos
+cubos.forEach((element, index)=>{
+  let cubo = cubos[index]["name"];
+  cubos_productos.push(cubo);
+});
+
+let result = [];
+
 function get_user(req) {
 
     //-- Leer la Cookie recibida
@@ -147,7 +161,8 @@ const server = http.createServer((req, res) => {
       let user_error = true;
 
       tienda[1]["users"].forEach((element, index) => {
-          if (tienda[1]["users"][index]["username"] == username){
+          if (tienda[1]["users"][index]["username"] == username &&
+           tienda[1]["users"][index]["password"] == password){
                 //-- El usuario está en la lista.
                 user_error = false;
                 //-- Asignar la cookie de usuario.
@@ -165,9 +180,9 @@ const server = http.createServer((req, res) => {
       });
       if (user_error) {
         content = ERROR_PAGE;
-        console.log("Error en el inicio de sesión");
+        console.log("Error en el inicio de sesión, el usuario o la contraseña son incorrectas");
         html_extra = "<h2>Gracias por estar en nuestra tienda</h2>";
-        content = ERROR_PAGE.replace("HTML_EXTRA", html_extra);
+        content = content.replace("HTML_EXTRA", html_extra);
       }
   }
   if (myURL.pathname == '/formulario') {
@@ -195,7 +210,6 @@ const server = http.createServer((req, res) => {
     content = PRODUCTO3.replace("carro: 0",new_message)
     content_type = "text/html";
   }
-
   if (myURL.pathname == '/carrito-producto1') {
     list_productos.push("Cubo 2x2");
     if (list_products != null) {
@@ -214,7 +228,6 @@ const server = http.createServer((req, res) => {
     }
 
   }
-
   if (myURL.pathname == '/carrito-producto2') {
     list_productos.push("Cubo 3x3");
     if (list_products != null) {
@@ -232,7 +245,6 @@ const server = http.createServer((req, res) => {
         content = INICIO.replace(enlace,usuario);
     }
   }
-
   if (myURL.pathname == '/carrito-producto3') {
     list_productos.push("Cubo 4x4");
     if (list_products != null) {
@@ -323,7 +335,7 @@ const server = http.createServer((req, res) => {
                 }                
               }
               if (tienda[0]["products"][1]["name"] == pedidos[index]) {
-                console.log("--------------Stock del Producto 1: " + tienda[0]["products"][1]["stock"]);
+                console.log("--------------Stock del Producto 2: " + tienda[0]["products"][1]["stock"]);
                 if (tienda[0]["products"][1]["stock"] != 0) {
                   tienda[0]["products"][1]["stock"] -= 1;
                 }else{
@@ -332,10 +344,10 @@ const server = http.createServer((req, res) => {
                 } 
               }
               if (tienda[0]["products"][2]["name"] == pedidos[index]) {
-                console.log("--------------Stock del Producto 1: " + tienda[0]["products"][2]["stock"]);
+                console.log("--------------Stock del Producto 3: " + tienda[0]["products"][2]["stock"]);
                 if (tienda[0]["products"][2]["stock"] != 0) {
                   tienda[0]["products"][2]["stock"] -= 1;
-                  console.log("--------------Stock del Producto 1: " + tienda[0]["products"][2]["stock"]);
+                  console.log("--------------Stock del Producto 3: " + tienda[0]["products"][2]["stock"]);
                 }else{
                   pedido_sin_stock = true;
                   producto_sin_stock += "producto 1 ";
@@ -370,12 +382,72 @@ const server = http.createServer((req, res) => {
     let myJSON = JSON.stringify(tienda);
     //-- Guardarla en el fichero destino
     fs.writeFileSync(FICHERO_JSON, myJSON);
-}
+  }
+  if (myURL.pathname == '/productos') {
+    console.log("Peticion de Productos!")
+    content_type = "application/json";
 
-    //-- Enviar la respuesta
-    res.setHeader('Content-Type', content_type);
-    res.write(content);
-    res.end()
+    //-- Leer los parámetros
+    let param1 = myURL.searchParams.get('param1');
+
+    //-- Pasamos
+    param1 = param1.toUpperCase();
+
+    console.log("  Param: " +  param1);
+
+    result = [];
+
+    for (let prod of cubos_productos) {
+
+        //-- Pasar a mayúsculas
+        prodU = prod.toUpperCase();
+
+        //-- Si el producto comienza por lo indicado en el parametro
+        //-- meter este producto en el array de resultados
+        if (prodU.startsWith(param1)) {
+            result.push(prod);
+        }
+        
+    }
+    console.log("Lista: " + result);
+    content = JSON.stringify(result);
+  }else if (myURL.pathname == '/cliente.js') {
+    //-- Leer fichero javascript
+    console.log("recurso: " + (myURL.pathname));
+    let recurso = myURL.pathname;
+    recurso = recurso.substr(1); 
+    fs.readFile(recurso, 'utf-8', (err,data) => {
+        if (err) {
+            console.log("Error: " + err)
+            return;
+        } else {
+          res.setHeader('Content-Type', 'application/javascript');
+          res.write(data);
+          res.end();
+        }
+    });
+    
+    return;
+  }else if (myURL.pathname == '/busqueda') {
+     //-- Nos quedamos con el primer valor que aparece en la búsqueda
+     if (result.length != 0){
+      console.log("Enviar a la página de " + result[0]);
+      if (result[0] == tienda[0]["products"][0]["name"]) {
+        content = PRODUCTO1;
+      }else if (result[0] == tienda[0]["products"][1]["name"]) {
+        content = PRODUCTO2;
+      }else if (result[0] == tienda[0]["products"][2]["name"]) {
+        content = PRODUCTO3;
+      }
+      
+     }
+  //-- Si no es ninguna de las anteriores devolver mensaje de error
+  }
+
+  //-- Enviar la respuesta
+  res.setHeader('Content-Type', content_type);
+  res.write(content);
+  res.end()
 
 });
 
