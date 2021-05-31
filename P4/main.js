@@ -9,6 +9,9 @@ const express = requiere('express');
 //-- Cargar módulo de colores
 const colors = require('colors');
 
+//-- Valor del puerto del chat
+const PUERTO = 9000;
+
 console.log("Arrancando electron...");
 
 //-- Variable para acceder a la ventana principal
