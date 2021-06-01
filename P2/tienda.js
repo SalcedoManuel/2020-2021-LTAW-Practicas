@@ -363,7 +363,7 @@ const server = http.createServer((req, res) => {
             content_type = "text/html";
           }
     }else{
-       content = content.replace("<p></p>","Para hacer la compra hay que registrarse o tener al menos un producto.")
+       content = content.replace("Si quiere iniciar sesión pulsa el botón de la izquierda","Para hacer la compra hay que registrarse o tener al menos un producto.")
     }
   }
   if (myURL.pathname == '/procesar_compra') {
