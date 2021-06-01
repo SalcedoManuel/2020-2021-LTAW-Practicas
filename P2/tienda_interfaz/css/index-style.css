@@ -1,0 +1,65 @@
+body{
+    background-color: rgb(202, 255, 248);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+div{
+    background-color: rgba(255, 255, 255, 0.205);
+    border-style: ridge;
+    border-radius: 10px;
+    border-width: 7px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+.izquierda{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px auto;
+    margin-left: 6%;
+    width: 45%;
+    position: relative;
+    float: left;
+    height: auto;
+    background-color: rgb(226, 181, 190);
+}
+.derecha{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 45%;
+    margin-left: 53%;
+    margin-top: 0.7%;
+    position: absolute;
+    float: left;
+    height: auto;
+    color: chocolate;
+}
+.derecha_producto{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 25%;
+    width: 50%;
+    height: auto;
+    background-color: rgb(226, 181, 190);
+}
+.izquierda_producto{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 25%;
+    width: 50%;
+    height: auto;
+    background-color: rgb(226, 181, 190);
+}
+.producto{
+    background-color: rgb(231, 187, 187);
+}
+h1{
+    text-align: center;
+}
+h2{
+    color: white;
+}

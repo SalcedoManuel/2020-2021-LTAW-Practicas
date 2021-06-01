@@ -4,26 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index-style.css">
     <script src="cliente.js" defer></script>
-    <title>Tienda Pagina Principal</title>
+    <title>Cuboingenio</title>
 </head>
 <body>
-    <h1>Bienvenido a la Super Tienda de Cubos de Rubik</h1>
-    <p>Tenemos muchos muchos cuboos</p>
-    <p>Si quiere iniciar sesión pulsa el botón de abajo</p>
+    <h1>Bienvenido a CuboIngenio</h1>
     <p></p>
     <p></p>
-    <a href='/producto1'>Producto 1</a>
-    <a href='/producto2'>Producto 2</a>
-    <a href='/producto3'>Producto 3</a>
+    <div class="izquierda">
+        <div class="izquierda_producto">
+            <h2>Cubo 3x3 </h2>
+        </div>
+        <div class="derecha_producto">
+            <a href='/producto1'><img src="css/cubo3x3.jpg" alt="Cubo 3x3" style="width: 100px;"></a>
+        </div>
+        <hr>
+        <div class="izquierda_producto">
+            <h2>Cubo 4x4</h2>
+        </div>
+        <div class="derecha_producto">
+            <a href='/producto2'><img src="css/cubo_4x4.png" alt="Cubo 4x4" style="width: 100px;"></a>
+        </div>
+        <hr>
+        <div class="izquierda_producto">
+            <h2>Cubo 2x2</h2>
+        </div>
+        <div class="derecha_producto">
+            <a href='/producto3'><img src="css/cubo_2x2.png" alt="Cubo 2x2" style="width: 100px;"></a>
+        </div>
+
+    </div>
+    <div class="derecha">
+        <div class="izquierda">
+            <a href='/finalizar_compra'>Realizar compra</a>
+        </div>
+        <div class="izquierda">
+            <a href='/formulario'>Login</a>
+        </div> 
+        
+        <br>
+        <br>
+        <br>
+
+        <p>Si quiere iniciar sesión pulsa el botón de la izquierda</p>
+        
+
+    </div>
+    <div class="derecha" style="margin-top: 15%; background-color: rgb(226,181,190);">
+        <h2>Búsquedas</h2>
+        <p>Introduce producto a buscar</p>
+        <input type="text" id="caja">
+        <a href="/busqueda">[Enviar]</a>
+        <p id="display1"></p>
+    </div>
+
+
     <p></p>
-    <a href='/finalizar_compra'>Realizar compra</a>
-    <a href='/formulario'>Login</a>
+
     <p> </p>
-    <h2>Búsquedas</h2>
-    <p>Introduce producto a buscar</p>
-    <input type="text" id="caja">
-    <a href="/busqueda">[Enviar]</a>
-    <p id="display1"></p>
+
 </body>
 </html>
