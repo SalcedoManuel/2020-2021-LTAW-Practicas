@@ -40,5 +40,5 @@ electron.ipcRenderer.on('display', (event, message) => {
 button_test.onclick = () => {
     console.log("Botón apretado!");
     //-- Enviar mensaje al proceso principal
-    electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Alea acta est");
+    electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Alea iacta est");
 }
