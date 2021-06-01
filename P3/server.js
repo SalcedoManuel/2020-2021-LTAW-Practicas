@@ -37,6 +37,8 @@ io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXIÓN **'.yellow);
   number_connections += 1;
+  msg = "Un senador entró en el foro."
+  io.send(msg);
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
