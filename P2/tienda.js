@@ -459,7 +459,21 @@ const server = http.createServer((req, res) => {
     });
     return
   }
-
+  if (myURL.pathname == '/tienda_interfaz/css/cubo3x3.jpg') {
+    let recurso = myURL.pathname;
+    recurso = recurso.substr(1);
+    fs.readFile(recurso,(err,data) => {
+      if (err) {
+          console.log("Error: " + err)
+          return;
+      } else {
+        res.setHeader('Content-Type', 'image/jpg');
+        res.write(data);
+        res.end();
+      }
+    });
+    return
+  }
 
 
   //-- Enviar la respuesta
