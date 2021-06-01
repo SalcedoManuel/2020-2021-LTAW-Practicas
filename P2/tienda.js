@@ -444,7 +444,9 @@ const server = http.createServer((req, res) => {
   //-- Si no es ninguna de las anteriores devolver mensaje de error
   }
   console.log(myURL.pathname)
-  if (myURL.pathname == '/tienda_interfaz/css/index-style.css') {
+  if (myURL.pathname == '/tienda_interfaz/css/index-style.css'||
+      myURL.pathname == '/tienda_interfaz/css/producto-style.css' ||
+      myURL.pathname == '/tienda_interfaz/css/formulario-style.css') {
     let recurso = myURL.pathname;
     recurso = recurso.substr(1);
     fs.readFile(recurso, 'utf-8', (err,data) => {
@@ -459,7 +461,10 @@ const server = http.createServer((req, res) => {
     });
     return
   }
-  if (myURL.pathname == '/tienda_interfaz/css/cubo3x3.jpg') {
+  if (myURL.pathname == '/tienda_interfaz/css/cubo_2x2.png' ||
+      myURL.pathname == '/tienda_interfaz/css/cubo_3x3.png' ||
+      myURL.pathname == '/tienda_interfaz/css/cubo_4x4.png' ||
+      myURL.pathname == '/tienda_interfaz/css/logo_small.png'){
     let recurso = myURL.pathname;
     recurso = recurso.substr(1);
     fs.readFile(recurso,(err,data) => {
@@ -467,13 +472,14 @@ const server = http.createServer((req, res) => {
           console.log("Error: " + err)
           return;
       } else {
-        res.setHeader('Content-Type', 'image/jpg');
+        res.setHeader('Content-Type', 'image/png');
         res.write(data);
         res.end();
       }
     });
     return
   }
+  
 
 
   //-- Enviar la respuesta
