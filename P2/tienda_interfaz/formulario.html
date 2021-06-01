@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tienda_interfaz/css/formulario-style.css">
     <title>Formulario</title>
 </head>
 <body>
-    <form action="/procesar" method="get">
-        Username:
-        <input type="text" name="username"/>
-        <p></p>
-        Password: 
-        <input type="text" name="password" />
-        <p></p>
-          <input type="submit" value="Enviar"/>
-    </form>
+    
+    <div class="centrado">
+        <img src="/tienda_interfaz/css/logo_small.png" alt="Logo de CuboIngenio">
+        <form action="/procesar" method="get">
+            Username:
+            <input type="text" name="username"/>
+            <p></p>
+            Password: 
+            <input type="text" name="password" />
+            <p></p>
+              <input type="submit" value="Enviar"/>
+        </form>
+    </div>
+
 </body>
 </html>
