@@ -12,6 +12,10 @@ div{
     font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
   }
+#busqueda{
+    margin-top: 5%;
+    background-color:rgb(226, 181, 190);
+}
 .izquierda{
     text-align: center;
     padding-top: 10px;
@@ -40,18 +44,24 @@ div{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: 25%;
-    width: 50%;
-    height: auto;
+    margin: 10px auto;
+    margin-left: 46%;
+    width: 45%;
+    position: relative;
+    float: left;
+    height: 20%;
     background-color: rgb(226, 181, 190);
 }
 .izquierda_producto{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: 25%;
-    width: 50%;
-    height: auto;
+    margin: 10px auto;
+    margin-left: 6%;
+    width: 45%;
+    position: relative;
+    float: left;
+    height: 5%;
     background-color: rgb(226, 181, 190);
 }
 .producto{
