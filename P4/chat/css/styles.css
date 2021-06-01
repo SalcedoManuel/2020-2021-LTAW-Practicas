@@ -1,60 +1,45 @@
+body{
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 @font-face{
-    font-family: roman;
+    font-family: roman-normal;
     src: url(./OPTIRomanaRoman-Normal.otf);
 }
-body{
-    background-image: url(background.jpg);
-    background-repeat:repeat-y;
-    background-size: 100%;
-    background-color: steelblue;
+@font-face{
+    font-family: roman-bold;
+    src: url(./OPTIRomanaRoman-Bold.otf);
 }
-.almacen{
+.titulo{
     text-align: center;
-}
-.information{
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;;
-}
-
-h1 {
-    width: 93%;
-    padding: 20px;
-    background-color: rgb(131, 226, 255);
-    border-radius: 10px;
-    text-align: center;
-    font-family: roman;
-  }
-h2{
-    text-align: center;
-    font-family: roman;
-}
-.visual{
-    width: 500px;
-    text-align: left;
-    font-family: roman;
-    overflow: auto;
+    background-color: cornflowerblue;
+    font-size: 20px;
+    margin: 20px auto;
+    width: 600px;
+    font-family: roman-bold;
 }
 .contenedor {
-    width: 500px;
-    height: 250px;
-    margin: 0px auto;
+    width: 450px;
+    height: 300px;
+    margin: 1px auto;
+    padding: 20px;
     background: #fff;
     overflow: auto;
-    font-family: roman;
+    font-family: roman-bold;
     border-radius: 4px;
-    text-align: left;
-    color: black;
 }
-
+.contenedor_pequeño{
+    width: 500px;
+    margin: auto;
+    border-radius: 10px;
+    font-family: roman-bold;
+}
+#msg_entry{
+    width: 490px;
+    border-radius: 10px;
+}
 .contenedor hr {
     background-color: #ff9d00;
     height: 5px;
-}
-.blue {
-    color: blue;
-}
-
-.red {
-  color: red;
 }

@@ -5,7 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
-  <title>Chat Imperial</title>
+  <link rel="shortcut icon" href="css/favicon.png">
+  <title>Foro Romano</title>
 
   <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
   <script src="/socket.io/socket.io.js"></script>
@@ -15,12 +16,19 @@
 </head>
 
 <body>
-  <h1>ROMA CHAT</h1>
-  <div style="text-align: center;">
-    <div>
-      <p id="display" class="contenedor"></p>
+  <span>
+    <div class="titulo">
+      <h2>Foro Romano</h2>
     </div>
-    <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry" class="visual">
+  </span>
+
+  <div>
+    <hr>
+    <p id="display" class="contenedor"></p>
+    <div class="contenedor_pequeño">
+      <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
+    </div>
+    
   </div>
 </body>
 </html>
