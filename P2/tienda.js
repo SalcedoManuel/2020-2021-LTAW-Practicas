@@ -443,6 +443,24 @@ const server = http.createServer((req, res) => {
      }
   //-- Si no es ninguna de las anteriores devolver mensaje de error
   }
+  console.log(myURL.pathname)
+  if (myURL.pathname == '/tienda_interfaz/css/index-style.css') {
+    let recurso = myURL.pathname;
+    recurso = recurso.substr(1);
+    fs.readFile(recurso, 'utf-8', (err,data) => {
+      if (err) {
+          console.log("Error: " + err)
+          return;
+      } else {
+        res.setHeader('Content-Type', 'text/css');
+        res.write(data);
+        res.end();
+      }
+    });
+    return
+  }
+
+
 
   //-- Enviar la respuesta
   res.setHeader('Content-Type', content_type);
