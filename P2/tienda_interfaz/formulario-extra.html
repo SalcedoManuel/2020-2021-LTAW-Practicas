@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tienda_interfaz/css/formulario-style.css">
     <title>Formulario de Compra</title>
 </head>
 <body>
-    <form action="/procesar_compra" method="get">
-        Direction:
-        <input type="text" name="direction"/>
-        <p></p>
-        Credit Card: 
-        <input type="text" name="credit_card" />
-        <p></p>
-          <input type="submit" value="Enviar"/>
-    </form>
+
+    <div class="centrado">
+        <img src="/tienda_interfaz/css/logo_small.png" alt="Logo de CuboIngenio">
+        <form action="/procesar_compra" method="get">
+            Direction:
+            <input type="text" name="direction"/>
+            <p></p>
+            Credit Card: 
+            <input type="text" name="credit_card" />
+            <p></p>
+            <input type="submit" value="Enviar"/>
+        </form>
+    </div>
 </body>
 </html>
