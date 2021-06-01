@@ -51,16 +51,23 @@ io.on('connect', (socket) => {
                "<b>/help</b>" + " : Muestra la lista con los comandos soportados<br>" + 
                "<b>/list</b>" + " : Devolverá el número de usuarios conectados<br>" + 
                "<b>/hello</b>" + " : El servidor nos devolverá el saludo<br>" + 
-               "<b>/date</b>" + " : Nos devolverá la fecha<br>";
+               "<b>/date</b>" + " : Nos devolverá la fecha<br>" + 
+               "<b>/clean</b>" + " : Limpia todo el display<br>";
+        console.log("Enviamos lista de comandos".red)
         socket.send(msg);
     }else if (msg == "/list"){
         msg = "Este el número de usuarios conectados: " + "<b>"+number_connections+ "</b>";
         socket.send(msg); 
     }else if (msg == "/hello"){
         msg = "<b> El servidor que os da cobijo os saluda </b>"
+        socket.send(msg);
     }else if (msg == "/date") {
         var date = new Date(Date.now());
         msg = "La fecha es:" + "<b>" + date + "</b>";
+        socket.send(msg);
+    }else if(msg == "/clean"){
+      msg = "/clean/"
+      socket.send(msg);
     }else{
         //-- Reenviarlo a todos los clientes conectados
         io.send(msg);

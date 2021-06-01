@@ -7,9 +7,11 @@ const socket = io();
 
 
 socket.on("message", (msg)=>{
-
-  display.innerHTML = '<p style="color:blue">' + msg + '</p>' + display.innerHTML;
-
+  if (msg == "/clean/") {
+    display.innerHTML = "";
+  }else{
+    display.innerHTML = '<p style="color:blue">' + msg + '</p>' + display.innerHTML;
+  }
 });
 
 //-- Al apretar el botón se envía un mensaje al servidor
