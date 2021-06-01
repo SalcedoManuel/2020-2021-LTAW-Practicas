@@ -43,6 +43,8 @@ h2{
     overflow: auto;
     font-family: roman;
     border-radius: 4px;
+    text-align: left;
+    color: black;
 }
 
 .contenedor hr {
