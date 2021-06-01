@@ -26,15 +26,13 @@ info_5.textContent = process.versions.chrome;
 info_6.textContent = process.versions.electron;
 number_users.textContent = 0;
 
-
-electron.ipcRenderer.on('number_users', (event, message) => {
-    console.log("Recibido: " + message);
-    number_users.innerHTML = message;
-});
-
 electron.ipcRenderer.on('display', (event, message) => {
     console.log("Recibido: " + message);
     display.innerHTML += message + '<br>';
+});
+electron.ipcRenderer.on('number_users', (event, message) => {
+    console.log("Recibido: " + message);
+    number_users.innerHTML = message;
 });
 
 button_test.onclick = () => {
