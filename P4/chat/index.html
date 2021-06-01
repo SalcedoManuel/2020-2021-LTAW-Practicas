@@ -10,42 +10,38 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self';" />
 
     <!-- Hoja de estilo de la interfaz -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/estilos.css">
 
     <!-- Cargar el proceso asociado a esta página -->
     <script src="index.js" defer></script>
 
-    <title>Mi APP CHAT</title>
+    <title>ROMA CHAT</title>
 </head>
 <body>
-    <h1>INTERFAZ GRÁFICA</h1>
-    
-    <hr>
-    <h2>Información:</h2>
-    <ul>
-        <li>Arquitectura: <span id="info_1" class="blue"></span> </li>
-        <li>Plataforma: <span id="info_2" class="blue"></span></li>
-        <li>Diretorio: <span id="info_3" class="blue"></span></li>
-    </ul>
-
-    <hr>
-    <h1>Home Star Chat (Server)</h1>
-
-    <hr>
-    <div class="left">
-        <p>Versión de Node: <span id="info1" class="blue"></span> </p>
-        <p>Versión de Chrome: <span id="info2" class="blue"></span></p>
-        <p>Versión de Electron: <span id="info3" class="blue"></span></p>
-        <p>Dirección IP: <span id="direccionip" class="blue"></span></p>
+    <h1>ROMA CHAT</h1>
+    <div class="information">
+        <b>Este foro ha sido creado para reunirse los senadores del glorioso imperio romano</b>
+        <b> y así evitar los acontencimientos acecidos en los idus de marzo con el fallecimiento de César.</b>
     </div>
-
-    <div class="right" id="mensaje">
-        <p>Mensajes: <br><br><span id="mensajes" class="blue"></span></p>
+    <div  class="contenedor" >
+        <p><span id="displays"></span></p>
     </div>
-
+    <p class="information">Cantidad de Senadores conectados <span id="number_users" class="blue"></span></p>
     <div class="bottom">
-        <p>Número usuarios conectados: <span id="info_users" class="blue"></span></p>
         <button id="button_test">Enviar mensaje de prueba</button>
+    </div>
+    <h1>INTERFAZ GRÁFICA</h1>    
+    <hr>
+    <h2 class="information">Información:</h2>
+    <div class="information">
+        <ul>
+            <li>Arquitectura: <span id="info_1" class="blue"></span> </li>
+            <li>Plataforma: <span id="info_2" class="blue"></span></li>
+            <li>Directorio: <span id="info_3" class="blue"></span></li>
+            <li>Versión de Node: <span id="info_4" class="blue"></span> </li>
+            <li>Versión de Chrome: <span id="info_5" class="blue"></span></li>
+            <li>Versión de Electron: <span id="info_6" class="blue"></span></li>
+        </ul>
     </div>
 </body>
 </html>

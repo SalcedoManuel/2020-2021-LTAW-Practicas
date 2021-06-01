@@ -1,6 +1,28 @@
+body{
+    background-image: url(background.jpg);
+    background-repeat:repeat-y;
+    background-size: 100%;
+    background-color: steelblue;
+}
+.almacen{
+    text-align: center;
+}
+.information{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;;
+}
+
+h1 {
+    width: 93%;
+    padding: 20px;
+    background-color: rgb(131, 226, 255);
+    border-radius: 10px;
+    text-align: center;
+  }
 .contenedor {
-    width: 250px;
-    height: 200px;
+    width: 500px;
+    height: 250px;
     margin: 50px auto;
     padding: 20px;
     background: #fff;
@@ -13,3 +35,11 @@
     background-color: #ff9d00;
     height: 5px;
 }
+.blue {
+    color: blue;
+}
+
+.red {
+  color: red;
+}
+

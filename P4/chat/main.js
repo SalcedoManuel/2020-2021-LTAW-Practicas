@@ -11,7 +11,7 @@ const ip = require('ip');
 //-- Número de conexiones recibidas.
 var number_connections = 0;
 
-const PUERTO = 8080;
+const PUERTO = 9000;
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -41,12 +41,16 @@ io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXION **'.yellow);
   number_connections += 1;
-  win.webContents.send('print-users',number_connections); 
+  win.webContents.send('number_users',number_connections); 
+  win.webContents.send('display',"Un nuevo senador ha entrado al foro.")
+
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXION TERMINADA **'.yellow);
     number_connections -= 1;
-    win.webContents.send('print-users',number_connections); 
+    win.webContents.send('number_users',number_connections);
+    win.webContents.send('display',"Un nuevo senador ha abandonado el foro.")
+
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
@@ -60,7 +64,7 @@ io.on('connect', (socket) => {
                "<b>/date</b>" + " : Nos devolverá la fecha<br>";
         socket.send(msg);
     }else if (msg == "/list"){
-        msg = "Este el número de usuarios conectados: " + "<b>"+number_connections+ "</b>";
+        msg = "Este el número de senadores conectados: " + "<b>"+number_connections+ "</b>";
         socket.send(msg);
 
     }else if (msg == "/hello"){
@@ -71,7 +75,7 @@ io.on('connect', (socket) => {
     }else{
         //-- Reenviarlo a todos los clientes conectados
         io.send(msg);
-        win.webContents.send('print-msg', msg)
+        win.webContents.send('display', msg)
     }
   });
 
@@ -111,16 +115,9 @@ electron.app.on('ready', () => {
   //-- Si lo queremos quitar, hay que añadir esta línea
   //win.setMenuBarVisibility(false)
 
-  //-- Cargar contenido web en la ventana
-  //-- La ventana es en realidad.... ¡un navegador!
-  //win.loadURL('https://www.urjc.es/etsit');
-
   //-- Cargar interfaz gráfica en HTML
   win.loadFile("index.html");
   
-  //-- Mandar dirección IP
-  ip_addr = 'http://' + ip.address() + ':' + PUERTO;
-  win.webContents.send('print-ip', ip_addr);
   //-- Esperar a que la página se cargue y se muestre
   //-- y luego enviar el mensaje al proceso de renderizado para que 
   //-- lo saque por la interfaz gráfica
