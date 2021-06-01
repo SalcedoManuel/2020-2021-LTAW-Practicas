@@ -316,7 +316,7 @@ const server = http.createServer((req, res) => {
             content = content.replace("¡Datos Recibidos!",frase);
             frase = "No tenemos suficiente stock de: " + producto_sin_stock + ". Intentelo mas tarde, ";
             content = content.replace("Gracias por su compra",frase);
-            content = content.replace("Guardamos su pedido.", "Se ha reseteado su lista");
+            content = content.replace("Guardamos el pedido", "Se ha reseteado su lista");
             console.log("NO TENEMOS STOCK POR AHORA");
             let cabecera = "product=";
             res.setHeader('Set-Cookie', cabecera);
