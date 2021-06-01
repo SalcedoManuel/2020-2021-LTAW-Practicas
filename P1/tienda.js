@@ -6,10 +6,10 @@ const PUERTO = 9000;
 
 
 http.createServer((req, res) => {
-  console.log("----------> Peticion recibida")
-  let q = url.parse(req.url, true);
+  console.log("---> Peticion recogida")
+  let q = url.parse(req.url, true);  
+  var tipo = q.pathname.split(".")[1];
   console.log("Recurso:" + q.pathname);
-  var tipo = q.pathname.split(".")[1]
   
   let filename = "";
 
