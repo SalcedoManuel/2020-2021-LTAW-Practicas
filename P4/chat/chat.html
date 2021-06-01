@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/estilos.css">
-  <title>Chat Super</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Chat Imperial</title>
 
   <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
   <script src="/socket.io/socket.io.js"></script>
@@ -14,14 +14,13 @@
   <script src="chat.js" defer></script>
 </head>
 
-<body style="background-color: aqua;">
-  <h2>Mini Chat</h2>
-  <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
-  <h3>Mensajes recibidos</h3>
-  <div>
-    <hr>
-    <p id="display" class="contenedor"></p>
+<body>
+  <h1>ROMA CHAT</h1>
+  <div style="text-align: center;">
+    <div>
+      <p id="display" class="contenedor"></p>
+    </div>
+    <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry" class="visual">
   </div>
-
 </body>
 </html>
