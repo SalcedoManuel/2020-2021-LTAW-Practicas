@@ -281,28 +281,28 @@ const server = http.createServer((req, res) => {
           //-- Con el fin de asegurar que tenemos el suficiente stock.
           let tienda_stock = tienda[0]["products"];
           pedidos.forEach((element, index) => {
-            if (tienda_stock[0]["name"] == pedidos.index){
-              if (tienda_stock[0][stock] != 0) {
-                tienda_stock[0][stock] -= 1;
+            if (tienda_stock[0]["name"] == pedidos[index]){
+              if (tienda_stock[0]["stock"] != 0) {
+                tienda_stock[0]["stock"] -= 1;
               }else{
                 pedido_sin_stock = true;
-                producto_sin_stock += "producto 1 ";
+                producto_sin_stock += "Cubos 3x3";
               }                
             }
-            if (tienda_stock[1]["name"] == pedidos.index) {
-              if (tienda_stock[1][stock] != 0) {
-                tienda_stock[1][stock] -= 1;
+            if (tienda_stock[1]["name"] == pedidos[index]) {
+              if (tienda_stock[1]["stock"] != 0) {
+                tienda_stock[1]["stock"] -= 1;
               }else{
                 pedido_sin_stock = true;
-                producto_sin_stock += "producto 1 ";
+                producto_sin_stock += "Cubo 4x4 ";
               } 
             }
-            if (tienda_stock[2]["name"] == pedidos.index) {
-              if (tienda_stock[2][stock] != 0) {
-                tienda_stock[2][stock] -= 1;
+            if (tienda_stock[2]["name"] == pedidos[index]) {
+              if (tienda_stock[2]["stock"] != 0) {
+                tienda_stock[2]["stock"] -= 1;
               }else{
                 pedido_sin_stock = true;
-                producto_sin_stock += "producto 1 ";
+                producto_sin_stock += " Cubos 2x2 ";
               } 
             }
 
@@ -323,6 +323,7 @@ const server = http.createServer((req, res) => {
             list_productos = [];
           }else{
             //-- Se ejecuta la compra.
+            list_productos = [];
             pedidos.forEach((element, index) => {
               console.log("-----------------------" + pedidos[index]);
               if (tienda[0]["products"][0]["name"] == pedidos[index]){
