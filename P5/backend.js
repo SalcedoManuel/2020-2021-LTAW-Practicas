@@ -10,7 +10,6 @@ const caja = document.getElementById("caja");
 
 let productos = ["Cubo2x2","Cubo3x3","Cubo4x4","Cubo Atleti","Megamix"];
 
-let num = 0;
 
 //-- Retrollamda del boton de Ver productos
 caja.oninput = () => {
@@ -23,7 +22,6 @@ caja.oninput = () => {
             let coincidencia = productos[i].split(caja.value);
             console.log(coincidencia)
             if (coincidencia.length > 1) {
-                let num =+ 1;
                 if (display1.innerHTML == "") {
                     display1.innerHTML += productos[i];
                     display1.style.display = '';
@@ -40,7 +38,8 @@ caja.oninput = () => {
                     display3.style.display = 'none';
                 }
                 if (display3.innerHTML == coincidencia[0]) {
-                    display3.innerHTML = "none";
+                    display3.innerHTML = "";
+                    display3.style.display ='none'
                 }
             }
         }
@@ -49,12 +48,5 @@ caja.oninput = () => {
         display1.innerHTML = "";
         display2.innerHTML = "";
         display3.innerHTML = "";
-        num = 0;
-    }
-    if (display1.innerHTML == "") {
-        display1.style.display = 'none';
-        display2.style.display = 'none';
-        display3.style.display = 'none';
-        num = 0;
     }
 }
