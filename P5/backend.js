@@ -10,7 +10,6 @@ const caja = document.getElementById("caja");
 
 let productos = ["Cubo2x2","Cubo3x3","Cubo4x4","Cubo Atleti","Megamix"];
 
-
 //-- Retrollamda del boton de Ver productos
 caja.oninput = () => {
     if(caja.value.length >= 1){
@@ -34,8 +33,8 @@ caja.oninput = () => {
                 }
             }else if(coincidencia.length == 1){
                 if (display2.innerHTML == coincidencia[0]) {
-                    display2.innerHTML ="";
-                    display3.style.display = 'none';
+                    display2.innerHTML = "1";
+                    display2.style.display = 'none';
                 }
                 if (display3.innerHTML == coincidencia[0]) {
                     display3.innerHTML = "";
@@ -48,5 +47,11 @@ caja.oninput = () => {
         display1.innerHTML = "";
         display2.innerHTML = "";
         display3.innerHTML = "";
+        num = 0;
+    }
+    if (display1.innerHTML == "") {
+        display1.style.display = 'none';
+        display2.style.display = 'none';
+        display3.style.display = 'none';
     }
 }
