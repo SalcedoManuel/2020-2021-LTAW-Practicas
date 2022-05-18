@@ -8,19 +8,19 @@ footer{
 
 #columna1{
   position: absolute;
-  text-align: center;
+  text-align: left;
   left:1%;
   width:70%;
-  background-color:#ffff55;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
-.columna2{
-  margin-left:220px;
-  margin-right:20px;
-  margin-top:10px;
 
-}
 #busqueda{
   text-align: center;
+}
+#caja{
+  margin-top: 10%;
+  height: 50%;
 }
 .display-extension{
   text-align: center;
@@ -43,6 +43,10 @@ footer{
   border-style: none;
   font-family: 'Courier New', Courier, monospace;
   font-language-override: initial;
+}
+.button_init{
+  width: 15%;
+  margin-left: 3%;
 }
 
 .dropbtn {

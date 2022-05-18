@@ -55,3 +55,9 @@ caja.oninput = () => {
         display3.style.display = 'none';
     }
 }
+
+
+display1.oninput = () => {
+    console.log("Enviar a la opción marcada, hacer luego con AJAX");
+
+}
