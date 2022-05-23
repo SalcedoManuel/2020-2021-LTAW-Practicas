@@ -21,7 +21,8 @@ const io = socket(server);
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido al Foro Romano!!! ---> ' + '<a href="/chat.html">Entrar</a>');
+  let path = __dirname + '/init.html'
+  res.sendFile(path);
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -54,7 +55,8 @@ io.on('connect', (socket) => {
                "<b>/list</b>" + " : Devolverá el número de usuarios conectados<br>" + 
                "<b>/hello</b>" + " : El servidor nos devolverá el saludo<br>" + 
                "<b>/date</b>" + " : Nos devolverá la fecha<br>" + 
-               "<b>/clean</b>" + " : Limpia todo el display<br>";
+               "<b>/clean</b>" + " : Limpia todo el display<br>" +
+               "<b>/username</b>" + ": Asignar un nombre de usuario";
         console.log("Enviamos lista de comandos".red)
         socket.send(msg);
     }else if (msg == "/list"){

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
+        <link rel="shortcut icon" href="css/favicon.png">
+        <title>Foro Romano</title>
+
+        <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Cliente que usa los Sockets.io-->
+        <script src="chat.js" defer></script>
+    </head>
+    
+    <body>
+        <span>
+            <div class="titulo">
+                <h2>Foro Romano</h2>
+            </div>
+        </span>
+  
+        <div>
+            <hr>
+            <h1 class="titulo">Introduzca su Nick:</h1>
+            <div class="contenedor_pequeño">
+                <input type="text" placeholder="Escribe aquí el nombre de usuario" autocomplete="off" id="register_entry">
+            </div>
+            <form action="/chat.html" method="get" style="background-color: cornsilk;">
+                <div style="text-align: center;">
+                    <input type="text" placeholder="Escribe aquí el nombre de usuario" autocomplete="off" id="register_entry">
+                    <input type="submit" value="ENTRAR"/>
+                </div>
+        
+            </form>     
+        </div>
+  
+    </body>
+</html>
