@@ -32,14 +32,16 @@ app.use('/', express.static(__dirname +'/'));
 //-- El directorio publico contiene ficheros estáticos
 app.use(express.static('public'));
 
+var userlist = [];
+
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXIÓN **'.yellow);
   number_connections += 1;
-  msg = "Un senador entró en el foro."
-  io.send(msg);
+  //-- msg = "Un senador entró en el foro."
+  //-- io.send(msg);
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
@@ -70,8 +72,14 @@ io.on('connect', (socket) => {
         msg = "La fecha es:" + "<b>" + date + "</b>";
         socket.send(msg);
     }else if(msg == "/clean"){
-      msg = "/clean/"
+      msg = "/clean"
       socket.send(msg);
+    }else if(msg.split("/username").length > 1){
+      nickname = msg.split("/username")[1];
+      user_list = userlist.push(nickname);
+      msg = "El senador " + nickname + " ha iniciado sesión."
+      io.send(msg);
+      console.log(msg.green);
     }else{
         //-- Reenviarlo a todos los clientes conectados
         io.send(msg);

@@ -24,11 +24,17 @@
 
   <div>
     <hr>
-    <p id="display" class="contenedor"></p>
-    <div class="contenedor_pequeño">
-      <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
-    </div>
-    
+      <div id="contenedor_usuario">
+          <input type="text" placeholder="Escribe aquí el nombre de usuario" autocomplete="off" id="register_entry">
+          <hr>
+      </div>
+
+    <div id="chat" style="display: none;">
+      <p id="display" class="contenedor"></p>
+      <div class="contenedor_pequeño">
+        <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
+      </div>
+    </div>    
   </div>
 
 </body>

@@ -18,6 +18,7 @@ socket.on("message", (msg)=>{
 msg_entry.onchange = () => {
   if (msg_entry.value)
     socket.send(msg_entry.value);
+    document.getElementById("chat").style.display = "block";
   
   //-- Borrar el mensaje actual
   msg_entry.value = "";
@@ -26,8 +27,9 @@ msg_entry.onchange = () => {
 //-- Al apretar el botón se envía el registro al servidor
 register_entry.onchange = () => {
   if (register_entry.value)
-    socket.send(register_entry.value);
-  
+    socket.send("/username" + register_entry.value);
+    document.getElementById("chat").style.display = "block";
+    document.getElementById("contenedor_usuario").style.display= "none";
   //-- Borrar el nombre de usario escrito actual
   register_entry.value = "";
 }
